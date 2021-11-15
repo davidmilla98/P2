@@ -104,6 +104,9 @@ Ejercicios
 - Etiquete manualmente los segmentos de voz y silencio del fichero grabado al efecto. Inserte, a 
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
+  
+  
+  <img src="img/WS.png" width="640" align="center">
 
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
@@ -111,9 +114,17 @@ Ejercicios
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
 	  estar seguros de que un segmento de señal se corresponde con voz.
 
+	  ***El nivel de potencia del silencio es aproximadamente -60 dB y el de voz de -20. Es por eso que determinamos un incremento de 40 dB.***
+
 	* Duración mínima razonable de los segmentos de voz y silencio.
+	
+	***La pausa de voz corta más larga que tenemos es de 0,23 segundos y es por eso que consideraremos la mínima 0,35 segundos.***
+
+	***El ruido corto más largo que tenemos es de 0,4 segundos por lo que la duración mínima para considerarla voz es de 0,5 segundos.***
 
 	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+
+	***La conclusión que sacamos de la gráfica de la tasa de cruces por cero es que cuando hay un cambio de silencio a voz o de voz a silencio, aunque sean cortos los tramos, la tasa de ceros tiene un pico.***
 
 
 ### Desarrollo del detector de actividad vocal
@@ -121,15 +132,31 @@ Ejercicios
 - Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal tan
   exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
 
+  ***Los ficheros que adjuntamos están completos.***
+
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
 
+<img src="img/Comparacion.png" width="640" align="center">
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
+
+***Las diferencias que vemos entre hacerlo manualmente y la detección automática son que en el caso de la detección automática nos aparecen más tramos de voz y de silencio debido a que los estados Maybe_voice y Maybe_silence los considera voz y silencio respectivamente.***
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
+
+
+<img src="img/FScore.png" width="640" align="center">
+
+***Resultados Voz: Recall = 97.32% Precision = 87.32% FScore = 95.14%*** 
+***Resultados Sil: Recall = 80.08% Precision = 95.50% Fscore = 91.96%***
+***Resultado Fscore_total = 93.539%***
+***A la vista de estos resultados vemos que hemos conseguido el objetivo de tener un Recall mayor a la Precision en la detección de la voz; y uno menor en el caso de la detección del silencio.***
+***Finalmente con el valor de FScore obtenido observamos que hemos dieseñado un detector fiable***
+
+
 
 
 ### Trabajos de ampliación
